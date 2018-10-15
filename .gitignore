@@ -17,5 +17,4 @@
 ###< symfony/web-server-bundle ###
 
 .idea
-/composer.lock
 .DS_STORE
