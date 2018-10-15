@@ -20,7 +20,6 @@ $debug = (bool) ($_SERVER['APP_DEBUG'] ?? $_ENV['APP_DEBUG'] ?? ('prod' !== $env
 
 if ($debug) {
     umask(0000);
-
     Debug::enable();
 }
 
@@ -31,6 +30,7 @@ if ($trustedProxies = $_SERVER['TRUSTED_PROXIES'] ?? $_ENV['TRUSTED_PROXIES'] ??
 if ($trustedHosts = $_SERVER['TRUSTED_HOSTS'] ?? $_ENV['TRUSTED_HOSTS'] ?? false) {
     Request::setTrustedHosts(explode(',', $trustedHosts));
 }
+
 
 $kernel = new Kernel($env, $debug);
 $request = Request::createFromGlobals();
