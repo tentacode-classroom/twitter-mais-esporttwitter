@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 
+use App\Entity\Message;
 use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,12 +19,16 @@ class ProfileController extends AbstractController
         $repository=$doctrine->getRepository(User::class);
         $user = $repository->findByName($name);
 
-        dump($user);
+
+        $doctrine = $this->getDoctrine();
+        $repository=$doctrine->getRepository(Message::class);
+        $messages= $repository->findByUserName($name);
 
         return $this->render('profile/profile.html.twig', [
             'controller_name' => 'ProfileController',
             'name' => $name,
             'user' => $user,
+            ['messages' => $messages],
         ]);
     }
 }
