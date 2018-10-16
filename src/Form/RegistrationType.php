@@ -20,12 +20,26 @@ class RegistrationType extends AbstractType
                     'placeholder' => 'Prénom',
                 ]
             ])
+
             ->add('lastname', TextType::class, [
-                'label' => 'Nom'
+                'label' => 'Nom',
+                'attr' => [
+                    'placeholder' => 'Nom'
+                ]
             ])
-            ->add('email', EmailType::class)
+
+            ->add('email', TextType::class, [
+                'label' => 'Email',
+                'attr' => [
+                    'placeholder' => 'Email'
+                ]
+            ])
+
             ->add('password', PasswordType::class, [
-                'label' => 'Mot de passe'
+                'label' => 'Mot de passe',
+                'attr' => [
+                    'placeholder' => 'Mot de passe'
+                ]
             ])
             ->add('submit', SubmitType::class, [
                 'label' => "S'inscrire"
