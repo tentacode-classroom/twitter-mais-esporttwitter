@@ -17,6 +17,7 @@ class RegistrationController extends AbstractController
         $user = new User();
         $form = $this->createForm(RegistrationType::class, $user);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $form->getData();
             $plainPassword = $user->getPassword();
@@ -26,8 +27,10 @@ class RegistrationController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
+
             return $this->redirectToRoute('registration_success');
         }
+
         return $this->render('registration/registration.html.twig', [
             'form' => $form->createView(),
         ]);
@@ -38,6 +41,6 @@ class RegistrationController extends AbstractController
      */
     public function confirmation()
     {
-        return $this->render('registration/registration_successa.html.twig');
+        return $this->render('registration/registration_success.html.twig');
     }
 }
