@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% include "registration/inscriptionBootstrap.html.twig" %}
+<html>
+<head>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    {% block title %}Inscription{% endblock %}
+
+</head>
+{% block body %}
+    <main role="main" class="container">
+        {{ form_start(form, {
+            'attr' : {
+                'novalidate' : 'novalidate'
+            }
+        }) }}
+        {# {{ form_widget(form) }} équivaut à : #}
+        {{ form_row(form.email) }}
+        {{ form_row(form.password) }}
+        <hr />
+        {{ form_row(form.firstname) }}
+        {{ form_row(form.lastname) }}
+        {{ form_end(form) }}
+    </main>
+
+{% endblock %}
+</html>
