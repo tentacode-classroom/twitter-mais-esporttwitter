@@ -18,7 +18,7 @@ class Message
     private $id;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string", length=280)
      */
     private $content;
 
@@ -28,9 +28,11 @@ class Message
     private $publication;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="messages")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $user_id;
+
     #endregion
 
     #region Getters & Setters
@@ -50,11 +52,6 @@ class Message
     {
         return $this->publication;
     }
-
-    public function getUserId(): ?int
-    {
-        return $this->user_id;
-    }
     #endregion
 
     #region Setters
@@ -72,7 +69,12 @@ class Message
         return $this;
     }
 
-    public function setUserId(int $user_id): self
+    public function getUserId(): ?User
+    {
+        return $this->user_id;
+    }
+
+    public function setUserId(?User $user_id): self
     {
         $this->user_id = $user_id;
 
