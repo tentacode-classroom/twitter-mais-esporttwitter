@@ -5,14 +5,24 @@
 
 <main role="main" class="container">
     <div class="container">
+        <br>
     {% block headerTitle %}
-        <h1>Accueil</h1>
+        <h1>Mes E-Twit's</h1>
     {% endblock %}
     <br>
-        <div class="media">
+        <hr>
+        <div class="input-group rounded">
+            <div class="input-group-prepend">
+            </div>
+            <textarea class="form-control" aria-label="With textarea" placeholder="Que voulez vous dire aujourd'hui ?"></textarea>
+            <button type="button" class="btn btn-primary">Tweeter</button>
+        </div>
+        <br>
+        <hr>
+        <div class="media border-bottom rounded">
             {#<div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded box-shadow">#}
             <div class="media-body">
-                <h5 class="mt-0 mb-1">@DeadSkill</h5>
+                <h5 class="mt-2 mb-2">@DeadSkill</h5>
                 Mon premier tweet c'est super cool. Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
                 {#Logos sur chaque tweet#}
                 {#Logo commenter#}
@@ -24,7 +34,8 @@
                 {#Logo envoyer un message#}
                 <a href=""><i class="fas fa-envelope"></i></a></h5>
             </div>
-            <img class="ml-3" src="" alt="Generic placeholder image">
+                {#Avatar du profil#}
+            <img class="ml-3" src="https://pbs.twimg.com/media/C8QsNInXUAAyjZQ.jpg" alt="Generic placeholder image" width="10%" style="border-radius: 10px">
             {#</div>#}
         </div>
     </div>
