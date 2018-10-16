@@ -52,6 +52,9 @@ class Message
     {
         return $this->publication;
     }
+
+
+
     #endregion
 
     #region Setters
@@ -80,6 +83,8 @@ class Message
 
         return $this;
     }
+
+
     #endregion
 
     #endregion
