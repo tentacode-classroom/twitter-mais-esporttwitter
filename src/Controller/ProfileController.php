@@ -18,6 +18,7 @@ class ProfileController extends AbstractController
     {
         $doctrine = $this->getDoctrine();
         $repository=$doctrine->getRepository(User::class);
+
         $user = $repository->findOneByFirstname($name);
 
 
@@ -26,6 +27,9 @@ class ProfileController extends AbstractController
         $doctrine = $this->getDoctrine();
         $repository=$doctrine->getRepository(Message::class);
         $messages = $repository->findByUser($userid);
+
+        $user= $repository->findOneByFirstname($name);
+
 
         return $this->render('profile/profile.html.twig', [
             'name' => $name,
