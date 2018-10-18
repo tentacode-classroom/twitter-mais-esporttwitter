@@ -6,7 +6,9 @@ use App\Entity\Message;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
 class MessageFixtures extends Fixture
@@ -17,14 +19,16 @@ class MessageFixtures extends Fixture
         $user->setFirstname("Thomas");
         $user->setLastname("Llobel");
         $user->setEmail("thomas.llobel@ynov.com");
-        $user->setPassword("password");
+        $user->setPassword(password_hash("password", PASSWORD_BCRYPT,$options = ['cost' => 12,]));
+        $user->setUsername("inconnu000");
         $manager->persist($user);
 
         $user1 = new User();
         $user1->setFirstname("Gabriel");
         $user1->setLastname("Pillet");
         $user1->setEmail("gabriel.pillet@ynov.com");
-        $user1->setPassword("password");
+        $user1->setPassword(password_hash("password", PASSWORD_BCRYPT,$options = ['cost' => 12,]));
+        $user1->setUsername("Tentacode");
         $manager->persist($user1);
 
         $message = new Message();
@@ -40,15 +44,15 @@ class MessageFixtures extends Fixture
         $manager->persist($message1);
 
         $message2 = new Message();
-        $message2->setContent("Bienvenue à @Philippe64 dans la team @AzureDream");
-        $message2->setPublication(42);
-        $message2->setUserId($user);
+        $message2->setContent("Nouveau tournoi prévu Dimanche à 21h, cashprize de 1000€");
+        $message2->setPublication(5);
+        $message2->setUserId($user1);
         $manager->persist($message2);
 
         $message3 = new Message();
-        $message3->setContent("Nouveau tournoi prévu Dimanche à 21h, cashprize de 1000€");
-        $message3->setPublication(5);
-        $message3->setUserId($user1);
+        $message3->setContent("Bienvenue à @Philippe64 dans la team @AzureDream");
+        $message3->setPublication(42);
+        $message3->setUserId($user);
         $manager->persist($message3);
 
         $message4 = new Message();
@@ -65,4 +69,6 @@ class MessageFixtures extends Fixture
 
         $manager->flush();
     }
+
+
 }

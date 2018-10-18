@@ -57,6 +57,11 @@ class User implements UserInterface, \Serializable
      */
     private $messages;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $username;
+
 
 
     public function __construct()
@@ -199,5 +204,17 @@ class User implements UserInterface, \Serializable
 
     public function __toString() {
         return $this->firstname;
+    }
+
+    public function setName(string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    public function getName()
+    {
+        return $this->username;
     }
 }
