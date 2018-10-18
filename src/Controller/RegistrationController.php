@@ -41,6 +41,6 @@ class RegistrationController extends AbstractController
      */
     public function confirmation()
     {
-        return $this->render('registration/registration_success.html.twig');
+        return $this->render('homepage/index.html.twig');
     }
 }
