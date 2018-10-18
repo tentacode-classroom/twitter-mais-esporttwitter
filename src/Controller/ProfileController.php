@@ -17,18 +17,12 @@ class ProfileController extends AbstractController
     {
         $doctrine = $this->getDoctrine();
         $repository=$doctrine->getRepository(User::class);
-        $user = $repository->findByName($name);
-
-
-        $doctrine = $this->getDoctrine();
-        $repository=$doctrine->getRepository(Message::class);
-        $messages= $repository->findByUserName($name);
+        $user= $repository->findOneByFirstname($name);
 
         return $this->render('profile/profile.html.twig', [
             'controller_name' => 'ProfileController',
             'name' => $name,
             'user' => $user,
-            ['messages' => $messages],
         ]);
     }
 }
