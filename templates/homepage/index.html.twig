@@ -2,50 +2,60 @@
 {% block body %}
 
     {#<link href="../../public/css/offcanvas.css" rel="stylesheet">#}
-    <main role="main" class="container">
-        <div class="container">
-            <br>
-                <h1> Les derniers E-Twit's</h1>
-            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-
-                <hr>
-                {#         Formulaire de texte utilisateur connecté pour twitter    #}
-                <div class="input-group rounded">
-                    <div class="input-group-prepend">
-                    </div>
-                    <textarea class="form-control" aria-label="With textarea" placeholder="Que voulez vous dire aujourd'hui ?"></textarea>
-                    <button type="button" class="btn btn-primary">Tweeter</button>
-                </div>
-                <br>
-                <hr>
-            {% endif %}
-            {#      Début de la page qui référence les tweets postés        #}
-            <div class="media shadow p-3 mb-5 rounded bg-primary text-white">
-                {#<div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded box-shadow">#}
-                <div class="media-body">
-                    {#      Pseudo du profil connecté       #}
-                    <h5 class="mt-2 mb-2 ">@DeadSkill</h5>
-                    Mon premier tweet c'est super cool. Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    {#      Logos actions présents sur chaque tweets      #}
-                    {#      Logo commenter      #}
-                    <hr>
-                    <a href="" class="text-white"><h5 class="mt-0 mb-1"><i class="far fa-comment"></i></a>
-                    {#      Logo retweet        #}
-                    <a href="" class="text-white"><i class="fas fa-retweet"></i></a>
-                    {#      Logo like       #}
-                    <a href="" class="text-white"><i class="fas fa-heart"></i></a>
-                    {#      Logo envoyer un message     #}
-                    <a href="" class="text-white"><i class="fas fa-envelope"></i></a></h5>
-                    {#      Compteur de temps pour savoir quand le tweet a été posté        #}
-                    <blockquote class="blockquote mb-0">
-                        <footer class="blockquote-footer text-white">Posté il y a <cite title="Source Title">6 minutes</cite></footer>
-                    </blockquote>
-                </div>
-                {#      Avatar du profil        #}
-                <img class="ml-3" src="https://pbs.twimg.com/media/C8QsNInXUAAyjZQ.jpg" alt="Generic placeholder image" width="10%" style="border-radius: 10px">
-                {#</div>#}
-            </div>
-
+<main role="main" class="container">
+    <div class="container">
+        <br>
+    {% block headerTitle %}
+        <h1>Mes E-Twit's</h1>
+    {% endblock %}
+    <br>
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <hr>
+        {#         Formulaire de texte utilisateur connecté pour twitter    #}
+        <div class="input-group rounded">
+            {{ form_start(form, {
+                'attr' : {
+                    'novalidate' : 'novalidate',
+                    'class': 'form-message'
+                }
+            }) }}
+            {{ form_errors(form.content) }}
+            {{ form_widget(form.content) }}
+            {{ form_end(form) }}
         </div>
-    </main>
+        <br>
+        {% endif %}
+        <hr>
+        {% for message in messages %}
+        {#      Début de la page qui référence les tweets postés        #}
+        <div class="media shadow p-3 mb-5 rounded bg-primary text-white">
+            {#<div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded box-shadow">#}
+            <div class="media-body">
+
+                {#      Pseudo du profil connecté       #}
+                <h5 class="mt-2 mb-2 ">@{{ message.UserId.firstname }}</h5>
+                {{ message.content }}                {#      Logos actions présents sur chaque tweets      #}
+                {#      Logo commenter      #}
+                <hr>
+                <a href="" class="text-white"><h5 class="mt-0 mb-1"><i class="far fa-comment"></i></a>
+                {#      Logo retweet        #}
+                <a href="" class="text-white"><i class="fas fa-retweet"></i></a>
+                {#      Logo like       #}
+                <a href="" class="text-white"><i class="fas fa-heart"></i></a>
+                {#      Logo envoyer un message     #}
+                <a href="" class="text-white"><i class="fas fa-envelope"></i></a></h5>
+                {#      Compteur de temps pour savoir quand le tweet a été posté        #}
+                <blockquote class="blockquote mb-0">
+                    <footer class="blockquote-footer text-white">Posté il y a {{ message.publication }} minutes</footer>
+                </blockquote>
+
+            </div>
+                {#      Avatar du profil        #}
+            <img class="ml-3" src="https://pbs.twimg.com/media/C8QsNInXUAAyjZQ.jpg" alt="Generic placeholder image" width="10%" style="border-radius: 10px">
+            {#</div>#}
+        </div>
+        {% endfor %}
+
+    </div>
+</main>
 {% endblock %}
