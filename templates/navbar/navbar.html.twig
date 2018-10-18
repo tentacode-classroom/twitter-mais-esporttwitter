@@ -16,13 +16,13 @@
             </li>
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('profile') }}"><i class="fas fa-user-circle"></i></i> Profil</a>
+                    <a class="nav-link" href="{{ path('profile', { 'name': app.user.firstname }) }}"><i class="fas fa-user-circle"></i> Profil</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#"><i class="fas fa-envelope"></i> Messages</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('logout') }}"><i class="fas fa-sign-out-alt"></i></i> Sign Out</a>
+                    <a class="nav-link" href="{{ path('logout') }}"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
                 </li>
             {% else %}
                 <li class="nav-item">
