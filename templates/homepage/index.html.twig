@@ -10,6 +10,7 @@
         <h1>Mes E-Twit's</h1>
     {% endblock %}
     <br>
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         <hr>
         {#         Formulaire de texte utilisateur connecté pour twitter    #}
         <div class="input-group rounded">
@@ -19,6 +20,7 @@
             <button type="button" class="btn btn-primary">Tweeter</button>
         </div>
         <br>
+        {% endif %}
         <hr>
         {#      Début de la page qui référence les tweets postés        #}
         <div class="media shadow p-3 mb-5 rounded bg-primary text-white">
