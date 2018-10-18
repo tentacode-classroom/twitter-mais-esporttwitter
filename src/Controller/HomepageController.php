@@ -19,7 +19,7 @@ class HomepageController extends AbstractController
         $message = new Message();
         $form = $this->createForm(AddMessageType::class, $message);
         $message->setPublication(rand(0,60));
-        $message->setUserId(null);
+        $message->setUserId($this->getUser());
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

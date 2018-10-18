@@ -4,6 +4,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\User;
+use App\Entity\Message;
 use App\Form\RegistrationType;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -34,6 +35,8 @@ class RegistrationController extends AbstractController
         return $this->render('registration/registration.html.twig', [
             'form' => $form->createView(),
         ]);
+
+
     }
 
     /**
@@ -41,6 +44,12 @@ class RegistrationController extends AbstractController
      */
     public function confirmation()
     {
-        return $this->render('homepage/index.html.twig');
+        $doctrine = $this->getDoctrine();
+        $repository=$doctrine->getRepository(Message::class);
+        $messages = $repository->findAll();
+        return $this->render('homepage/index.html.twig',
+        [
+            'messages' => $messages,
+        ]);
     }
 }
