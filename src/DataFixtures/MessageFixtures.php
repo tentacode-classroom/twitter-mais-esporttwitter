@@ -28,7 +28,7 @@ class MessageFixtures extends Fixture
         $user1->setLastname("Pillet");
         $user1->setEmail("gabriel.pillet@ynov.com");
         $user1->setPassword(password_hash("password", PASSWORD_BCRYPT,$options = ['cost' => 12,]));
-        $user1->setNname("Tentacode");
+        $user1->setName("Tentacode");
         $manager->persist($user1);
 
         $message = new Message();
