@@ -12,13 +12,13 @@
     {% if error %}
         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
-
-<main role="main" class="container">
+<br>
+<main role="main" class="container" style="background-color: rgba(0,0,0,0.10); border-radius : 6px" width="5000px">
     <form action="{{ path('login') }}" method="post">
         <br>
-        <div class="container" style="background-color: rgba(0,0,0,0.10); border-radius : 6px">
+        <div class="container">
             <br>
-            <h1>Connecte toi</h1>
+            <h1><i class="fas fa-user"></i> Connecte toi</h1>
             <br>
         {#<label for="username">Adresse email:</label>#}
         <input type="text" id="username" name="_username" class="form-control" placeholder="Adresse mail" value="{{ last_username }}"/>

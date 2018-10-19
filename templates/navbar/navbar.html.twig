@@ -11,13 +11,25 @@
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
+            {% if app.request.get('_route') == 'homepage' %}
             <li class="nav-item active">
                 <a class="nav-link" href="{{ path('homepage') }}"><i class="fas fa-home"></i> Accueil</a>
             </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('homepage') }}"><i class="fas fa-home"></i> Accueil</a>
+            </li>
+            {% endif %}
+            {% if app.request.get('_route') == 'profile' %}
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ path('profile', { 'name': app.user.firstname }) }}"><i class="fas fa-user-circle"></i> Profil</a>
+                </li>
+            {% else %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('profile', { 'name': app.user.firstname }) }}"><i class="fas fa-user-circle"></i> Profil</a>
                 </li>
+            {% endif %}
                 <li class="nav-item">
                     <a class="nav-link" href="#"><i class="fas fa-envelope"></i> Messages</a>
                 </li>
@@ -25,17 +37,29 @@
                     <a class="nav-link" href="{{ path('logout') }}"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
                 </li>
             {% else %}
+            {% if app.request.get('_route') == 'registration' %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ path('registration') }}"><i class="fas fa-user-plus"></i></i> Sign Up</a>
+                </li>
+            {% else %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('registration') }}"><i class="fas fa-user-plus"></i></i> Sign Up</a>
                 </li>
+            {% endif %}
+            {% if app.request.get('_route') == 'login' %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ path('login') }}"><i class="fas fa-sign-in-alt"></i></i> Sign In</a>
+                </li>
+            {% else %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('login') }}"><i class="fas fa-sign-in-alt"></i></i> Sign In</a>
                 </li>
             {% endif %}
+            {% endif %}
         </ul>
         <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Rechercher sur E-twit" aria-label="Rechercher">
-            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Rechercher</button>
+            <input class="form-control mr-sm-2" type="text" placeholder="Rechercher un profil" aria-label="Rechercher">
+            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
         </form>
     </div>
 </nav>
