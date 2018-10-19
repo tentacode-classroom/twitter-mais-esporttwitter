@@ -20,7 +20,7 @@ class MessageFixtures extends Fixture
         $user->setLastname("Llobel");
         $user->setEmail("thomas.llobel@ynov.com");
         $user->setPassword(password_hash("password", PASSWORD_BCRYPT,$options = ['cost' => 12,]));
-        $user->setUsername("inconnu000");
+        $user->setName("inconnu000");
         $manager->persist($user);
 
         $user1 = new User();
@@ -28,7 +28,7 @@ class MessageFixtures extends Fixture
         $user1->setLastname("Pillet");
         $user1->setEmail("gabriel.pillet@ynov.com");
         $user1->setPassword(password_hash("password", PASSWORD_BCRYPT,$options = ['cost' => 12,]));
-        $user1->setUsername("Tentacode");
+        $user1->setNname("Tentacode");
         $manager->persist($user1);
 
         $message = new Message();
