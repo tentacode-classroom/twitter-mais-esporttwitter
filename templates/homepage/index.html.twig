@@ -33,7 +33,7 @@
             <div class="media-body">
 
                 {#      Pseudo du profil connecté       #}
-                <h5 class="mt-2 mb-2 ">@{{ message.UserId.name }}</h5>
+                <h5><a style="margin-left: -2% ;color: white; text-decoration: none" class="nav-link" href="{{ path('profile', { 'name': message.UserId.name }) }}">@{{ message.UserId.name }}</a></h5>
                 {{ message.content }}                {#      Logos actions présents sur chaque tweets      #}
                 {#      Logo commenter      #}
                 <hr>

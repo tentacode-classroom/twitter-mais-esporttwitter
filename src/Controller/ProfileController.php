@@ -19,7 +19,7 @@ class ProfileController extends AbstractController
         $doctrine = $this->getDoctrine();
         $repository=$doctrine->getRepository(User::class);
 
-        $user = $repository->findOneByFirstname($name);
+        $user = $repository->findOneByUsername($name);
 
 
         $userid = $user->getId('id');
